@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Based Access</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            display: none;
+            width: 100%;
+            height: 500px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.pinimg.com/736x/29/93/fd/2993fd151e2e1cab871aec155e22cbcc.jpg" alt="Location Logo"> 
+    <h1>Welcome to a Humble location place</h1>
+    <button onclick="initialize()">Check Location</button>
+    <div id="map">
+        <iframe id="mapIframe" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+       
+        function initialize() {
+            const location = prompt("Please enter your location:");
+
+            if (location.toLowerCase() === 'punjab' || location.toLowerCase() === 'haryana' || location.toLowerCase() === 'chandigarh') {
+                const username = prompt("Enter your username:");
+                const password = prompt("Enter your password:");
+
+                
+                const validUsername = "aarnav";
+                const validPassword = "pass";
+
+                if (username === validUsername && password === validPassword) {
+                    showMap(location);
+                } else {
+                    alert("Wrong credentials");
+                }
+            } else {
+                alert("Access Denied");
+            }
+        }
+
+        
+        function showMap(location) {
+            const mapDiv = document.getElementById('map');
+            mapDiv.style.display = 'block';
+            const mapIframe = document.getElementById('mapIframe');
+
+            let mapSrc = "";
+            switch(location.toLowerCase()) {
+                case 'punjab':
+                    mapSrc = "https://www.google.com/maps?q=Punjab&output=embed";
+                    break;
+                case 'haryana':
+                    mapSrc = "https://www.google.com/maps?q=Haryana&output=embed";
+                    break;
+                case 'chandigarh':
+                    mapSrc = "https://www.google.com/maps?q=Chandigarh&output=embed";
+                    break;
+            }
+
+            mapIframe.src = mapSrc;
+        }
+    </script>
+</body>
+</html>
